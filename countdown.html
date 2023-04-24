@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>
+        New Year's Eve Counter
+    </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-image: url("ok.png.png");
+            background-size: cover;
+            background-position: center center;
+            min-height: 100vh;
+            display: flex;
+            color: white;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .big-text {
+            font-size: 6rem;
+            line-height: 1;
+            font-weight: bold;
+            margin: 2rem;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: white;
+            margin-top: -15rem;
+            font-weight: normal;
+        }
+
+        .el {
+            text-align: center;
+        }
+
+        .el span {
+            font-size: 2rem;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <script>
+        const newYear = '3 Jun 2023';
+        window.addEventListener('DOMContentLoaded', (event) => {
+            function countdown() {
+                const newYearDate = new Date(newYear);
+                const currentDate = new Date();
+                const daysLeft = new Date(newYearDate - currentDate);
+                const seconds = (daysLeft / 1000);
+                const days = Math.floor(seconds / 3600 / 24);
+                const hours = Math.floor(seconds / 3600) % 24;
+                const mins = Math.floor(hours / 3600) % 24;
+                const secs = Math.floor(seconds % 60);
+
+                document.getElementById('days').innerHTML = setTime(days) + ":";
+                document.getElementById('hours').innerHTML = setTime(hours) + ":";
+                document.getElementById('mins').innerHTML = setTime(mins) + ":";
+                document.getElementById('secs').innerHTML = setTime(secs);
+
+                if (hours < 10) {
+                    document.getElementsByClassName('countdown-container').display = 'none';
+                document.getElementById('message').display = 'block';
+            }
+        }
+
+            function setTime(time) {
+                return time < 10 ? `0${time}` : time;
+            }
+            setInterval(countdown, 1000);
+        countdown();
+        });
+
+    </script>
+
+    <h1>MCES Gr. 8 Graduation</h1>
+    <div class="countdown-container">
+        <div class="days-c el">
+            <p class="big-text" id="days">0</p>
+            <span>Days</span>
+        </div>
+        <div class="hours-c el">
+            <p class="big-text" id="hours">0</p>
+            <span>Hours</span>
+        </div>
+        <div class="mins-c el">
+            <p class="big-text" id="mins">0</p>
+            <span>Mins</span>
+        </div>
+        <div class="secs-c el">
+            <p class="big-text" id="secs">0</p>
+            <span>Seconds</span>
+        </div>
+    </div>
+    <h1 id="message" style="display: none;"></h1>
+
+</body>
+
+</html>
